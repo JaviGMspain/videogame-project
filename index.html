@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div id="game-intro">
+            <img class = "logo" src="./images/logo.png" alt="logo" height="200px" width="200px">
+            <button id = "start-button">Start Game</button>
+            <p>WIPE OUT YOUR OPPONENTS AND RESTORE PEACE TO THE UNIVERSE!</p>
+        </div>
+        <div id="game-container">
+            <div>
+                <h2>Stats</h2>
+                <p>Score: <span id="score">0</span></p>
+                <p>Lives: <span id="lives">3</span></p>
+            </div>
+            <div id = "game-screen"></div>
+        </div>
+        <div id="game-end">
+            <header>GAME OVER!!</header>
+            <button id = "restart-button">Restart</button>
+        </div>
+        <div id = "you-win">
+            <header>YOU WIN!!</header>
+            <button id = "win-button">Restart</button>
+        </div>
+    </main>
+
+    <audio id="music" src="/music/Pendulum - Crush.mp3" loop></audio>
+
+    
+    <script type="text/javascript" src="/js/final boss.js"></script>
+    <script type="text/javascript" src="/js/bullet.js"></script>
+    <script type="text/javascript" src="/js/objects.js"></script>
+    <script type="text/javascript" src="/js/opponents.js"></script>
+    <script type="text/javascript" src="/js/player.js"></script>
+    <script type="text/javascript" src="/js/game.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+</body>
+
+</html>

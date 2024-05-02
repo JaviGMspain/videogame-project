@@ -1,0 +1,78 @@
+body {
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    background-image: url("/images/gamebackground.png");
+}
+
+p {
+  color: chocolate;
+}
+
+header {
+  color: aliceblue;
+  text-transform: bolder;
+  font-size: 150px;
+}
+
+h2 {
+  color: chocolate;
+}
+
+#game-intro {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    margin-bottom: 50px;
+  }
+
+  button {
+    background-color: red;
+    height: 50px;
+    width: 150px;
+    border-color: red;
+    border-radius: 40px;
+    cursor: pointer;
+
+  }
+
+  #game-container {
+    display: flex;
+    padding: 20px 0px;
+    justify-content: center;
+  }
+
+  #game-screen {
+    display: none;
+    align-content: center;
+    padding: 0px;
+    overflow: hidden;
+    position: relative;
+    background-image: url("./images/game-background.png");
+    background-size: cover;
+    animation: space 10s linear infinite;
+  }
+
+  @keyframes space {
+    0% {
+      background-position: 0 -1000px;
+    }
+    50% {
+      background-position: 0 -500px;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  #game-end {
+    display: none;
+  }
+
+  #you-win {
+    display: none;
+  }
