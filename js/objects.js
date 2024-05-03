@@ -52,7 +52,7 @@ class ExtraLive extends Objects {
    
 }
 
-class PowerShot extends Objects {
+class PlusScore extends Objects {
     constructor(gameScreen, img) {
         super(gameScreen, img);
     }
@@ -72,4 +72,25 @@ class PowerShot extends Objects {
         }
     }
     
+}
+
+class Alien extends Objects {
+    constructor(gameScreen, img) {
+        super(gameScreen, img);
+    }
+
+    catch(player) {
+        const playerRect = player.element.getBoundingClientRect();
+        const objectRect = this.element.getBoundingClientRect();
+        if (
+            playerRect.left < objectRect.right &&
+            playerRect.right > objectRect.left &&
+            playerRect.top < objectRect.bottom &&
+            playerRect.bottom > objectRect.top
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

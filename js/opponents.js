@@ -49,7 +49,3 @@ class Opponent2 extends Opponents {
   }
 }
 
-/*class BossBullet extends Opponents {
-  constructor(gameScreen, img)
-}*/
-

@@ -45,9 +45,3 @@ class Bullet {
   }
 }
 
-/*class BossBullet extends Bullet {
-  constructor(gameScreen, x, y, img) {
-    super(gameScreen, x, y, img);
-  }
-}*/
-

@@ -68,9 +68,4 @@ class Player {
         const bullet = new Bullet(this.gameScreen, this.left + this.width / 2, this.top, `/images/bullet.png`);
         this.bullets.push(bullet)
       }
-
-      shootPowerful() {
-        const bullet = new Bullet(this.gameScreen, this.left + this.width / 2, this.top);
-        this.bullets.push(bullet);
-      }
 }

@@ -42,14 +42,11 @@ class Game {
 
 
   gameLoop() {
-    //this.update();
-    this.bossUpdate();
-
-    /*if (this.finalBoss === true) {
+    if (this.finalBoss === true) {
       this.bossUpdate();
     } else {
       this.update();
-    }*/
+    }
     if (this.gameIsOver) {
       clearInterval(this.gameIntervalId);
       this.gameScreen.style.display = "none";
@@ -74,12 +71,9 @@ class Game {
         scoreCounter.innerText = this.score;
       }
 
-      if (this.score >= 10)  {
-        console.log('not true')
+      if (this.score >= 50) {
         this.finalBoss = true;
       }
-      //if (this.score === 10) this.youWin = true;
-
 
       if (this.player.didCollide(opponent)) {
 
@@ -141,41 +135,53 @@ class Game {
         livesCounter.innerText = this.lives;
         object.element.remove();
         this.objects.splice(index, 1);
-      } else if (object instanceof PowerShot && object.catch(this.player)) {
-        this.player.shootPowerful();
-        this.opponents.forEach((opponent, opponentIndex) => {
-          this.opponents.lives -= 2;
-        });
+      } else if (object instanceof PlusScore && object.catch(this.player)) {
+        this.score += 5;
+        const scoreCounter =
+          this.gameScreen.parentElement.querySelector(`#score`);
+        scoreCounter.innerText = this.score;
+        object.element.remove();
+        this.objects.splice(index, 1);
+      } else if (object instanceof Alien && object.catch(this.player)) {
+        this.score -= 3;
+        const scoreCounter =
+          this.gameScreen.parentElement.querySelector(`#score`);
+        scoreCounter.innerText = this.score;
         object.element.remove();
         this.objects.splice(index, 1);
       }
     });
 
-    if (this.counter % 400 === 0) {
+    if (this.counter % 500 === 0) {
       this.objects.push(new ExtraLive(this.gameScreen, `/images/extralive.png`));
     }
 
-    if (this.counter % 500 === 0) {
-      this.objects.push(new PowerShot(this.gameScreen, `/images/powershot.png`));
+    if (this.counter % 450 === 0) {
+      this.objects.push(new Alien(this.gameScreen, `/images/alien.png`));
+    }
+
+    if (this.counter % 400 === 0) {
+      this.objects.push(new PlusScore(this.gameScreen, `/images/powershot.png`));
     }
   }
+
 
   bossUpdate() {
     this.counter++;
 
-   
+
 
     this.opponents.forEach((opponent, index) => {
-      if(opponent instanceof FinalBoss) {
-        if(this.counter % 50 === 0) {
+      if (opponent instanceof FinalBoss) {
+        if (this.counter % 50 === 0) {
 
           if (Math.random() < 0.5) {
-              opponent.direction = -1;
+            opponent.direction = -1;
           } else {
-              opponent.direction = 1;
+            opponent.direction = 1;
           }
         }
-       
+
       }
       opponent.move();
       if (opponent.top >= this.gameScreen.offsetHeight - 10) {
@@ -228,9 +234,12 @@ class Game {
           this.player.bullets.splice(bulletIndex, 1);
           opponent.lives--;
           if (opponent.lives <= 0) {
-            if(opponent instanceof FinalBoss) {
-                console.log('dead')
-                this.youWin = true;
+            if (opponent instanceof FinalBoss) {
+              this.score += 30;
+              const scoreCounter =
+                this.gameScreen.parentElement.querySelector(`#score`);
+              scoreCounter.innerText = this.score;
+              this.youWin = true;
             }
             opponent.element.remove();
             this.opponents.splice(opponentIndex, 1);
@@ -253,11 +262,19 @@ class Game {
         livesCounter.innerText = this.lives;
         object.element.remove();
         this.objects.splice(index, 1);
-      } else if (object instanceof PowerShot && object.catch(this.player)) {
-        this.player.shootPowerful();
-        this.opponents.forEach((opponent, opponentIndex) => {
-          this.opponents.lives -= 2;
-        });
+      } else if (object instanceof PlusScore && object.catch(this.player)) {
+        this.score += 5;
+        const scoreCounter =
+          this.gameScreen.parentElement.querySelector(`#score`);
+        scoreCounter.innerText = this.score;
+
+        object.element.remove();
+        this.objects.splice(index, 1);
+      } else if (object instanceof Alien && object.catch(this.player)) {
+        this.score -= 3;
+        const scoreCounter =
+          this.gameScreen.parentElement.querySelector(`#score`);
+        scoreCounter.innerText = this.score;
         object.element.remove();
         this.objects.splice(index, 1);
       }
@@ -267,8 +284,12 @@ class Game {
       this.objects.push(new ExtraLive(this.gameScreen, `/images/extralive.png`));
     }
 
+    if (this.counter % 450 === 0) {
+      this.objects.push(new Alien(this.gameScreen, `/images/alien.png`));
+    }
+
     if (this.counter % 500 === 0) {
-      this.objects.push(new PowerShot(this.gameScreen, `/images/powershot.png`));
+      this.objects.push(new PlusScore(this.gameScreen, `/images/powershot.png`));
     }
   }
 
